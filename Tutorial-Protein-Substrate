@@ -1,0 +1,89 @@
+# Guıa para realizar Docking proteına-sustrato  
+utilizando autodock vina  
+Juan Juli ́an Santoyo Flores  
+February 2, 2016  
+1  
+Instrucciones de preparación  
+1. En primer lugar se tiene que tener la estructura de la enzima y el sustrato
+que se pretenden estudiar en formato pdb.  
+2. Una vez que se tienen las estructuras en formato pdb, se abren los archivos
+utilizando el programa AutodockTools este programa permite la preparaci ́on
+de los archivos de entrada para poder realizar el docking molecular.  
+3. Se va a trabajar primero con la enzima, se abre el archivo pdb que corre-
+sponde a esta y enseguida se le agregan los hidr ́ogenos polares utilizando
+el men ́
+u Edit −→ hidrogens −→ add y se selecciona la opci ́on polar only.  
+4. Si se tienen previamente identificados los residuos que corresponden al sitio  
+activo o que sean de importancia para la formaci ́on del complejo enzima-  
+sustrato se seleccionan utilizando AutodockTools. Con el prop ́osito de  
+permitir su movimiento si es de nuestro inter ́es.  
+5. Para seleccionar los residuos se utiliza el menú select −→ select from string
+−→ en la sección de residuo se coloca el nombre y el número de residuo(ej.SER80 todo en may ́
+uscula).  
+6. Una vez que se tienen seleccionados todos los residuos se procede a generar
+el grid donde el sustrato va a buscar unirse. Esto se hace en el menu
+u grid  
+−→ Macromolecule −→ ah ́ı se selecciona la mol ́ecula que corresponde a la
+enzima. Una vez que se selecciona la enzima se abre entra al submen ́
+u grid
+box, aparece un cubo el cual se debe utiliza como el espacio tridimensional
+donde el residuo va a buscar unirse a la enzima.
+7. En ese men ́
+u el spacing se pone en 1.000 y a partir de ah ́ı se va cambiando
+el tama ̃
+no de la caja en los 3 ejes y tambi ́en se puede centrar la caja en
+los tres ejes. Al final la caja debe incluir dentro de ella todos los residuos
+seleccionados como importantes. Se recomienda que el tama ̃
+no de la caja
+no exceda los 30x30x30.
+8. Se recomienda guardar los datos que se generar en el submen ́
+u grid box
+que corresponde al tama ̃
+no de la caja y la orientaci ́on de esta, se van a
+necesitar mas tarde.
+19. Una vez que se genero el grid se procede a guardar los residuos selecciona-
+dos como flexibles esto se hace en el men ́
+u flexible residues y ah ́ı se escoge
+la opci ́
+on choose torsions in currently selected residues, esto le dice al pro-
+grama que los residuos seleccionados van a ser flexibles. Una vez que se
+hizo esto en el mismo men ́
+u se escoge la opci ́on output y ah ́ı se selecciona
+guardar la parte flexible que corresponde a los residuos seleccionados y la
+parte r ́ıgida que corresponde al resto de la enzima.
+10. Ahora vamos a trabajar con el sustrato, se abre el sustrato en formato
+pdb y se visualiza para estudiar que sea qu ́ımicamente coherente.
+11. Enseguida se le agregan los hidr ́ogenos polares como se hizo en el caso de
+la enzima.
+12. Una vez que se tienen los hidr ́ogenos polares entramos al men ́
+u ligand y
+ah ́ı en la opci ́
+on input se escoge la mol ́ecula que corresponde al sustrato.
+13. Ya que se escogi ́
+o el sustrato se escoge la opci ́on torsion tree −→ set
+number of torsions y ah ́ı el programa escoge un n ́
+umero de torsiones au-
+tom ́
+aticamente, en este caso es suficiente para nosotros.
+14. Finalmente se guarda el sustrato como un archivo pdbqt.
+2
+Ejecuci ́
+on del autodock vina
+1. Una vez que se tienen tanto la enzima como el sustrato preparados en
+formato pdbqt, se crea un archivo .txt, que contiene las dimensiones de la
+caja que se utilizo.
+2. Una vez que se tiene el archivo, tradicionalmente nombrado config.txt, se
+crea una carpeta y se pone dentro de ella el archivo .txt, el sustrato, la
+enzima y el ejecutable.
+3. El programa se corre utilizando la siguiente orden: ./vina –config con-
+fig.txt –log log.txt
+4. Una vez que se corre el programa se genera un archivo out.pdbqt que con-
+tiene todas las posibles conformaciones del sustrato, ordenadas de mayor
+afinidad a menor afinidad.
+5. Los resultados se pueden visualizar utilizando el programa AutodockTools
+en el men ́
+u Analyze −→ Dockings −→ Open autodock vina result y ah ́ı
+se pueden visualizar las diferentes conformaciones del sustrato que se en-
+cuentran en el archivo out.pdbqt, est ́an ordenadas por afinidad, siendo
+la primera la conformaci ́on m ́as af ́ın al sitio activo de la enzima. Los
+resultados se pueden visualizar utilizando tambi ́en el programa Pymol.
